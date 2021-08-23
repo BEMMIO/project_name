@@ -1,11 +1,45 @@
 # very basic start new project 
 
-- create virtualenv
-- activate it
+
+- create virtualenv/ pipenv
+
+python3 -m venv django-project
+   cd django-project
+   source Scripts\activate
 - install project dependency's
-etc.
+
+#common dependency's
+pip install django
+
+
+(start project)
 
 - django-admin startproject project_name .
+NB : use config as project_name
+ie. django-admin startproject config .
+
+& create a folder (with the actual name of the project)
+
+(start an app)
+- python manage.py startapp app_name
+
+
+
+manag.py commands
+ (run your server)
+- python manage.py runserver
+- manage.py runserver
+   
+ (check for any errors)
+ - manage.py check
+
+
+ (static collection)
+ - manage.py collectstatic
+
+ (admin/user)
+ - manage.py createsuperuser
+
 
 """
 NB : . after the project_name
@@ -32,3 +66,58 @@ create the app,
 
 project url (apps routes register)
  - path('app_path/',include('app_folder.app1.urls',namespace='app1'))
+
+
+
+
+-----------------
+
+
+venv_name/
+     config/
+            settings/
+
+               local.py
+
+               development.py
+
+               production.py
+
+               test.py
+
+            urls.py
+            ....
+
+
+      project_name/
+
+            app_name/
+               ....
+
+            app_name/
+               .....
+
+            templates/
+                     (project_name)/
+                           app_name (folder)/
+                             ....... 
+
+            static/
+                     (project_name)/
+                           app_name (folder)/
+                              ....... 
+
+     manage.py
+
+     requirements.txt
+
+     .env
+
+     .env.example
+
+     Procfile
+
+     runtime.txt
+
+     ....
+
