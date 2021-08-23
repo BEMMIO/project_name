@@ -9,7 +9,41 @@ python3 -m venv django-project
 - install project dependency's
 
 #common dependency's
-pip install django
+          33 lines (29 sloc)  1.54 KB
+  
+# Python
+# ------------------------------------------------------------------------------
+argon2-cffi  # https://github.com/hynek/argon2_cffi
+python-slugify  # https://github.com/un33k/python-slugify
+Pillow  # https://github.com/python-pillow/Pillow
+pytz  # https://github.com/stub42/pytz
+redis  # https://github.com/antirez/redis
+celery # 
+
+whitenoise  # https://github.com/evansd/whitenoise
+
+# Django
+# ------------------------------------------------------------------------------
+django  # pyup: < 2.1  # https://www.djangoproject.com/
+django-allauth  # https://github.com/pennersr/django-allauth
+django-contrib-comments  # https://github.com/django/django-contrib-comments
+django-crispy-forms  # https://github.com/django-crispy-forms/django-crispy-forms
+django-environ  # https://github.com/joke2k/django-environ
+django-markdownx  # https://github.com/neutronX/django-markdownx
+django-redis  # https://github.com/niwinz/django-redis
+django-taggit  # https://github.com/alex/django-taggit
+sorl-thumbnail  # https://github.com/jazzband/sorl-thumbnail
+django-debug-toolbar  # https://github.com/jazzband/django-debug-toolbar
+django-anymail  # https://github.com/anymail/django-anymail
+django-storages  # https://github.com/jschneier/django-storages
+psycopg2 --no-binary psycopg2  # https://github.com/psycopg/psycopg2
+
+
+# Channels
+# ------------------------------------------------------------------------------
+channels  # https://github.com/django/channels
+channels-redis  # https://github.com/django/channels_redis
+
 
 
 (start project)
@@ -17,6 +51,8 @@ pip install django
 - django-admin startproject project_name .
 NB : use config as project_name
 ie. django-admin startproject config .
+
+NB : always create a custom user model.
 
 & create a folder (with the actual name of the project)
 
@@ -77,6 +113,8 @@ venv_name/
      config/
             settings/
 
+               __init__.py
+
                local.py
 
                development.py
@@ -86,10 +124,16 @@ venv_name/
                test.py
 
             urls.py
+
+            celery.py
+
+            wsgi.py
             ....
 
 
       project_name/
+
+            __init__.py
 
             app_name/
                ....
@@ -100,12 +144,12 @@ venv_name/
             templates/
                      (project_name)/
                            app_name (folder)/
-                             ....... 
+                                             ....... 
 
             static/
                      (project_name)/
                            app_name (folder)/
-                              ....... 
+                                             ....... 
 
      manage.py
 
@@ -115,9 +159,9 @@ venv_name/
 
      .env.example
 
-     Procfile
+     Procfile (optional : Heroku)
 
-     runtime.txt
+     runtime.txt (optional : Heroku)
 
      ....
 
