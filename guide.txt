@@ -1,0 +1,34 @@
+# very basic start new project 
+
+- create virtualenv
+- activate it
+- install project dependency's
+etc.
+
+- django-admin startproject project_name .
+
+"""
+NB : . after the project_name
+
+"""
+
+
+# start an app
+
+python manage.py startapp app_name
+
+NB : create a apps_folder(python app, with __init__.py) to contain all app.
+
+create the app,
+- change its app.py file and;
+   class App1Config(AppConfig):
+    	name = 'apps_folder.app1'
+
+- pick and drop into app_folder
+
+- settings.py
+	app_folder.app1.app.App1Config
+
+
+project url (apps routes register)
+ - path('app_path/',include('app_folder.app1.urls',namespace='app1'))
