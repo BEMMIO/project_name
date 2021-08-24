@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-u4(08+6qv=%$53rdyp!dplu0y7qpe-sdmz&3+van=y6l5n#y+c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','trybimmeo.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','trybimmeopage.herokuapp.com']
 
 
 # Application definition
@@ -132,7 +133,12 @@ STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
 
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+django_heroku.settings(locals())
