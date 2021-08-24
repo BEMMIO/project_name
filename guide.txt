@@ -1,15 +1,27 @@
 # very basic start new project 
 
+                           https://dev.to/fceruti/setting-up-a-django-project-like-a-pro-353
 
 - create virtualenv/ pipenv
 
-python3 -m venv django-project
+python3 -m venv project-name-with-iphin-venv
+eg. python3 -m venv forum-uk-nurses
+
    cd django-project
    source Scripts\activate
 - install project dependency's
 
 #common dependency's
           33 lines (29 sloc)  1.54 KB
+
+
+
+
+# useful
+
+pipenv install -r requirements.txt (moves all installed dependency's into a file.)
+
+--------------------------- COMMON DEPENDENCY ---------------------------------
   
 # Python
 # ------------------------------------------------------------------------------
@@ -19,6 +31,7 @@ Pillow  # https://github.com/python-pillow/Pillow
 pytz  # https://github.com/stub42/pytz
 redis  # https://github.com/antirez/redis
 celery # 
+sentry # raven
 
 whitenoise  # https://github.com/evansd/whitenoise
 
@@ -43,6 +56,8 @@ psycopg2 --no-binary psycopg2  # https://github.com/psycopg/psycopg2
 # ------------------------------------------------------------------------------
 channels  # https://github.com/django/channels
 channels-redis  # https://github.com/django/channels_redis
+
+# docker-compose
 
 
 
@@ -135,6 +150,16 @@ venv_name/
 
             __init__.py
 
+
+            users/ (mandatory app)
+               ....
+
+            core/ (mandatory app)
+               ....
+
+            conf/ (mandatory app) -> handles project configuration, not settings.py
+               ....
+
             app_name/
                ....
 
@@ -150,8 +175,31 @@ venv_name/
                      (project_name)/
                            app_name (folder)/
                                              ....... 
+            staticfiles/
+                     .......
+
+            media/
+               ....
+
+            logs/
+               ....
+
+
+            helpers.py
+
+            paginator.py
+
+            middlewares.py
+
+
+
+
 
      manage.py
+
+     Pipfile
+
+     Pipefile.lock
 
      requirements.txt
 
@@ -165,3 +213,87 @@ venv_name/
 
      ....
 
+
+
+----------------------
+
+Eg. user app/
+
+      api/
+         v1/
+            ......
+
+      models/
+         ....
+
+      managers/
+         ....
+
+      management/
+         commands/
+         .....
+
+      templatetag/
+         ....
+
+
+      templates/
+         ....
+
+      static/
+         ....
+
+      tests/
+         ....
+
+
+      fixtures/
+         ....
+
+
+      forms/
+         .....
+
+
+      permissions/
+         ....
+
+
+      bans.py
+
+      validators.py
+
+      tokens.py
+
+      services.py
+
+      gravatar.py
+
+      auth.py
+
+      recapture.py
+
+      middlewares.py
+
+      context_processors.py
+
+      decorators.py
+
+      exceptions.py
+
+      signals.py
+
+      utils.py
+
+      .....
+
+      views/
+         activation.py
+
+         auth.py
+
+         profile.py
+
+         passwords.py
+
+         ...
