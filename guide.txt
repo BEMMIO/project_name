@@ -19,7 +19,11 @@ eg. python3 -m venv forum-uk-nurses
 
 # useful
 
-pipenv install -r requirements.txt (moves all installed dependency's into a file.)
+pipenv install -r requirements.txt (install from a requirements.txt file)
+
+
+pip freeze > requirements.txt (moves all installed dependency's names into a file.)
+
 
 --------------------------- COMMON DEPENDENCY ---------------------------------
   
@@ -29,11 +33,18 @@ argon2-cffi  # https://github.com/hynek/argon2_cffi
 python-slugify  # https://github.com/un33k/python-slugify
 Pillow  # https://github.com/python-pillow/Pillow
 pytz  # https://github.com/stub42/pytz
-redis  # https://github.com/antirez/redis
-celery # 
+redis  # https://github.com/tporadowski/redis/releases
+celery # https://docs.celeryproject.org/en/master/django/first-steps-with-django.html
 sentry # raven
 
 whitenoise  # https://github.com/evansd/whitenoise
+django-heroku # https://pypi.org/project/django-heroku/
+dj-database-url
+dj-email-url    
+django-celery-results #https://github.com/celery/django-celery-results
+django-celery-beat #https://github.com/celery/django-celery-beat
+celery #https://github.com/celery/celery
+
 
 # Django
 # ------------------------------------------------------------------------------
@@ -41,7 +52,7 @@ django  # pyup: < 2.1  # https://www.djangoproject.com/
 django-allauth  # https://github.com/pennersr/django-allauth
 django-contrib-comments  # https://github.com/django/django-contrib-comments
 django-crispy-forms  # https://github.com/django-crispy-forms/django-crispy-forms
-django-environ  # https://github.com/joke2k/django-environ
+python-decouple # https://github.com/henriquebastos/python-decouple
 django-markdownx  # https://github.com/neutronX/django-markdownx
 django-redis  # https://github.com/niwinz/django-redis
 django-taggit  # https://github.com/alex/django-taggit
@@ -50,6 +61,7 @@ django-debug-toolbar  # https://github.com/jazzband/django-debug-toolbar
 django-anymail  # https://github.com/anymail/django-anymail
 django-storages  # https://github.com/jschneier/django-storages
 psycopg2 --no-binary psycopg2  # https://github.com/psycopg/psycopg2
+django-mptt https://github.com/django-mptt/django-mptt
 
 
 # Channels
@@ -136,8 +148,6 @@ venv_name/
 
                production.py
 
-               test.py
-
             asgi.py
 
             urls.py
@@ -155,14 +165,19 @@ venv_name/
 
             documentation/
                .txt files
+               keys.txt
+               packages.txt (packages i will need for this project after research, project requirements etc)
+               commands.txt (running redis,celery,Heroku, AWS, github commands,redis,etc)
+               checkbok.txt (check what ToDO before and after deployment - LIST of things)
 
-               eg. database_schema.txt, packages.txt,commands.txt (running redis,celery etc)
+               eg. database_schema.txt, packages.txt,commands.txt 
 
 
                (guide to project development,features,database diagram)
                (setups,settings etc.)
                it should serve as a guide to every project
-               NB: dont push to github.
+               
+
 
 
             users/ (mandatory app)
@@ -174,7 +189,10 @@ venv_name/
             core/ (mandatory app)
                ....
 
-            conf/ (mandatory app) -> handles project configuration, not settings.py
+            search/ (mandatory app)
+               ....
+
+            conf/ (mandatory app) -> handles project configuration, not settings.py (keep settings.py simple,light)
                ....
 
             app_name/
@@ -190,12 +208,16 @@ venv_name/
                                                  account_login.html
                                                  account_password_reset.html
                                                  account_password_change.html
+                                                 account_welcome_message.html
+
+                                                 layouts.html
 
                                              ie. [app_name]__[verb].html
                                              .......
 
                            robot.txt
                            layout.html
+                           aside.html
                            footer.html
                            navbar.html
                            search.html
@@ -205,6 +227,7 @@ venv_name/
 
                      500.html
                      404.html
+                     layout.html
                      .... 
 
             static/
@@ -215,7 +238,6 @@ venv_name/
                            vendors/
                            fonts/
                            favicon.ico
-                           favicon-size?.png
 
             staticfiles/
                      .......
@@ -234,7 +256,7 @@ venv_name/
             middlewares.py
 
 
-
+     locale (i18 messages folder)/
 
 
      manage.py
@@ -253,7 +275,9 @@ venv_name/
 
      Procfile (optional : Heroku)
 
-     runtime.txt (optional : Heroku)
+     runtime.txt
+
+     README.md
 
      ....
 
@@ -261,16 +285,82 @@ venv_name/
 
 ----------------------
 
-Eg. user app/
+core/
+      documentation/
+         .txt file (docs about this app)
+
+      management/
+         commands/
+         .....
+
+      templatetag/
+         ....
+
+      permissions/
+         ....
+
+      validators/
+         ...
+
+      api/ (any consuming api for the project)
+         ...
+
+      mail/
+         ...
+
+      fields/
+         ...
+
+      middlewares/
+         ...
+
+      context_processors.py
+
+      decorators.py
+
+      exceptions.py
+
+      error_codes.py
+
+      signals.py
+
+      tasks/
+         ___init__.py (keep the codes here)
+
+      utils/
+         functions.py
+         slug.py
+         time.py
+         signals.py
+         text.py
+         ...
+
+
+
+Eg. users app/
 
       documentation/
          .txt file (docs about this app)
 
       api/
          v1/
-            ......
+            authentication.py
+            permissions.py
+            serializers.py
+            pagination.py
+            validators.py
+            request.py
+            conf.py
+            throttling.py
+            utils.py
+            views.py
+            ...
 
       models/
+         validator.py
+         exceptions.py
+         bans.py
+         user.py
          ....
 
       managers/
@@ -304,11 +394,14 @@ Eg. user app/
 
 
       forms/
+         validators.py
          .....
 
       avatars/
+         validations.py
          gravatar.py
          avatar.py
+         images.py
          ....
 
 
@@ -316,8 +409,6 @@ Eg. user app/
       permissions/
          ....
 
-
-      bans.py
 
       emails.py (all user email handlers)
 
@@ -340,6 +431,8 @@ Eg. user app/
 
       exceptions.py
 
+      error_codes.py
+
       signals.py
 
       utils.py
@@ -356,3 +449,24 @@ Eg. user app/
          passwords.py
 
          ...
+
+
+
+
+
+
+///////
+
+
+js framework ;
+
+NB : separate frontend proj codebase from backend
+as done by taiga, wagtail etc.
+
+
+
+
+
+
+----------------------------------------------------------------
+make a requirements.txt file for common packages for all projects and extra etc
